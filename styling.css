@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 25px;
+    padding: 25px;
+    text-align: center;
+}
+
+header, footer {
+    background-color: cornsilk;
+    color: darkslateblue;
+    padding: 25px;
+}
