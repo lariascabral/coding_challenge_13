@@ -9,3 +9,5 @@ In this repository, we see the possibilities that different Document Object Mode
 3 - Converting NodeLists to Arrays for Bulk Updates
 
 4 - Implementing Removal of Employee Cards with Event Bubbling
+
+5 - Inline Editing of Employee Details
