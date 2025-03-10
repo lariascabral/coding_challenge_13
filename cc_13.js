@@ -12,22 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const employeePosition = document.createElement("p")
         employeePosition.textContent = position ;
-        
-        const removeEmployee = document.createElement("button") ;
-        removeEmployee.textContent = "Remove Employee" ;
-        removeEmployee.addEventListener("click", () => {
-            employeeContainer.removeChild(employeeCard) ;
-        }) ;
 
         employeeCard.appendChild(employeeName) ;
         employeeCard.appendChild(employeePosition) ;
-        employeeCard.appendChild(removeEmployee) ;
+    }})
 
-        employeeContainer.appendChild(employeeCard) ;
-    }
 
+// Task 3 - Bulk Update on Employee Cards
+
+function updateEmployeeCards() {
+    const employeeCards = document.querySelectorAll(".employee-card") ;              // Using querySelectorAll so all cards made are edited by the premises
+    Array.from(employeeCards).forEach(card => {
+        card.style.backgroundColor = "#483D8B" ;                                   // Changing background color to the correct shade of purple
+    }) ;
+} ;
+
+updateEmployeeCards() ;
+
+// Test Cases --- Addition of employees cards
     addEmployeeCard("Mare Barrow", "Electrical Engineer") ;
     addEmployeeCard("Maven Calore", "Fire Engineer") ;
     addEmployeeCard("Tiberias Calore VII", "Fire Engineer") ;
-
-}) ;
+    addEmployeeCard("Evangeline Samos", "Materials Engineer")
