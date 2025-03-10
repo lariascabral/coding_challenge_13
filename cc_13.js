@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         employeeCard.appendChild(employeeName) ;                                        // Appending the name and position ot the employee card
         employeeCard.appendChild(employeePosition) ;
+        
+        employeeContainer.appendChild(employeeCard) ;                                   // Adding employee card to the container of employees
 
         // Task 4 - Employee Card Removal with Event Bubbling
         
@@ -27,13 +29,51 @@ document.addEventListener("DOMContentLoaded", () => {
         
         employeeCard.appendChild(removeEmployee) ;                                      // Adding the remove button to each card
 
-        employeeContainer.appendChild(employeeCard) ;                                   // Adding employee card to the container of employees
-
         employeeContainer.addEventListener("click", () => {
             console.log("Employee card succesfully clicked!")                           // Adding console message when card is clicked
         })
         
-    }
+        // Task 5 - Inline Editing for Employee Cards
+
+        const editEmployee = document.createElement("button") ;
+        editEmployee.textContent = "Edit Employee" ;
+        editEmployee.addEventListener("click", (event) => {                            // Will do the following when clicked
+        event.stopPropagation() ;                                                      // Used to stop the program fron logging more messages to the console
+        
+        const editedName = document.createElement("input") ;                           // Creates an input field for name editions
+        editedName.value = employeeName.textContent ;                                  // Changes the text content by using the field
+        employeeName.textContent = "" ;                                                // Starts with an empty field
+        employeeCard.appendChild(editedName) ;                                         // Exchanges the past name for the edited one
+
+        const editedPosition = document.createElement("input") ;                       // Creates an input field for name editions
+        editedPosition.value = employeePosition.textContent ;                          // Changes the text content by using the field
+        employeePosition.textContent = "" ;                                            // Starts with an empty field
+        employeeCard.appendChild(editedPosition) ;                                     // Exchanges past position witht the edited one
+
+        const saveButton = document.createElement("button");                           // Adds a saving changes button
+        saveButton.textContent = "Save Changes"
+        saveButton.addEventListener("click", () => {                                   // When clicked, saves changes
+            employeeName.textContent = editedName.value ;
+            employeePosition.textContent = editedPosition.value ;
+            
+            employeeCard.removeChild(saveButton) ;                                      // Removing save button for editEmployee when edited
+            employeeCard.appendChild(editEmployee) ;
+        }) ;
+
+        
+        employeeCard.appendChild(saveButton) ;
+        employeeCard.appendChild(editEmployee) ;
+ 
+}) ;
+
+employeeCard.appendChild(editEmployee) ;
+}
+
+// Test Cases --- Addition of employees cards
+addEmployeeCard("Mare Barrow", "Electrical Engineer") ;                              // Using Red Queen characters to test the code
+addEmployeeCard("Maven Calore", "Fire Engineer") ;
+addEmployeeCard("Tiberias Calore VII", "Fire Engineer") ;
+addEmployeeCard("Evangeline Samos", "Materials Engineer")
 
 // Task 3 - Bulk Update on Employee Cards
 
@@ -44,12 +84,6 @@ function updateEmployeeCards() {
     }) ;
 } ;
 
-updateEmployeeCards() ;
-
-// Test Cases --- Addition of employees cards
-    addEmployeeCard("Mare Barrow", "Electrical Engineer") ;                             // Using Red Queen characters to test the code
-    addEmployeeCard("Maven Calore", "Fire Engineer") ;
-    addEmployeeCard("Tiberias Calore VII", "Fire Engineer") ;
-    addEmployeeCard("Evangeline Samos", "Materials Engineer")
+updateEmployeeCards() ;                                                                  // Logging the color update
 
 }) ;
